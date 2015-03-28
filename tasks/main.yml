@@ -7,8 +7,8 @@
 - name: copy template .zshrc file into place
   copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template dest=~/.zshrc force=no
 
-- name: override zsh_custom path
-  lineinfile: dest=~/.zshrc line=ZSH_CUSTOM={{ stack_d }}
+- name: source ~/.stack.d/*.zsh files
+  lineinfile: dest=~/.zshrc line="for f in {{ stack_d }}/*.zsh; do source $f; done" insertbefore=BOF
 
 - name: add zsh configuration
   copy: src=zsh.zsh dest={{ stack_d }}
