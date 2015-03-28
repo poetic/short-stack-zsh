@@ -8,7 +8,7 @@
   copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template dest=~/.zshrc force=no
 
 - name: remove plugins reference in .zshrc file
-  lineinfile: dest=~/.zshrc state=absent regexp="^plugins=(git)"
+  lineinfile: dest=~/.zshrc state=absent regexp="^plugins=\(git\)"
 
 - name: source ~/.stack.d/*.zsh files
   lineinfile: dest=~/.zshrc line="for f in {{ stack_d }}/*.zsh; do source $f; done" insertbefore=BOF
