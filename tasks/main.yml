@@ -8,7 +8,7 @@
   copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template dest=~/.zshrc force=no
 
 - name: comment out plugins=(git) so that we can manage plugins in stack.d files
-  lineinfile: dest=~/.zshrc regexp="^plugins=\(git\)" line="# plugins=(git)"
+  lineinfile: dest=~/.zshrc regexp="^plugins=\(git\)" line="# plugins=(git)" backrefs=yes
 
 - name: source ~/.stack.d/*.zsh files
   lineinfile: dest=~/.zshrc line="for f in {{ stack_d }}/*.zsh; do source $f; done" insertafter="^# User configuration"
