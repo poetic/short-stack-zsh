@@ -7,11 +7,11 @@
 - name: copy template .zshrc file into place
   copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template dest=~/.zshrc force=no
 
-- name: remove plugins reference in .zshrc file
-  lineinfile: dest=~/.zshrc state=absent regexp="^plugins=\(git\)"
+- name: comment out plugins=(git) so that we can manage plugins in stack.d files
+  lineinfile: dest=~/.zshrc state=absent regexp="^plugins=\(git\)" line="# plugins=(git)"
 
 - name: source ~/.stack.d/*.zsh files
-  lineinfile: dest=~/.zshrc line="for f in {{ stack_d }}/*.zsh; do source $f; done" insertbefore=BOF
+  lineinfile: dest=~/.zshrc line="for f in {{ stack_d }}/*.zsh; do source $f; done" insertafter="^# User configuration"
 
 - name: add zsh configuration
   copy: src=zsh.zsh dest={{ stack_d }}
