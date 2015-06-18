@@ -2,7 +2,7 @@
   # Currently have a PR: https://github.com/robbyrussell/oh-my-zsh/pull/3617
   # Once this gets merged, we can change back to master.
 - name: clone oh-my-zsh
-  git: repo=https://github.com/MatthewHager/oh-my-zsh.git dest=~/.oh-my-zsh
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh
 
 - name: copy template .zshrc file into place
   copy: src=~/.oh-my-zsh/templates/zshrc.zsh-template dest=~/.zshrc force=no
